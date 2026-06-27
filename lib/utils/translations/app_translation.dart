@@ -9,6 +9,8 @@ class AppTranslation {
     selectLocation: "Wybierz lokalizacje",
     enterYourLocation: "Podaj swoją lokalizacje",
     enterYourLocationDescription: "Wpisz miasto i kod kraju po przecinku",
+    temperature: "Temp.",
+    rain: "Opady",
     feelsLike: "Odczuwalna",
     wind: "Wiatr",
     humidity: "Wilgotność",
@@ -17,7 +19,10 @@ class AppTranslation {
     sevenDayForecastLabel: "Prognoza 7-dniowa",
     sunriseAndSunsetLabel: "Wschód i zachód słońca",
     airQualityLabel: "Jakość powietrza",
+    sunrise: "Wschód słońca",
+    sunset: "Zachód słońca",
     seeMore: "Zobacz więcej",
+    hour: "Godzina",
     today: "Dziś",
     now: "Teraz",
     month: [
@@ -94,6 +99,7 @@ class AppTranslation {
     close: "Zamknij",
     ex: "np.",
     saved: "Zapisano",
+    loadingError: "Wystąpił błąd podczas ładowania danych",
   );
 
   final Translation _enTranslation = Translation(
@@ -101,6 +107,8 @@ class AppTranslation {
     enterYourLocation: "Enter your location",
     enterYourLocationDescription:
         "Enter the city and country code after the comma",
+    temperature: "Temp.",
+    rain: "Rain",
     feelsLike: "Feels like",
     wind: "Wind",
     humidity: "Humidity",
@@ -109,7 +117,10 @@ class AppTranslation {
     sevenDayForecastLabel: "7 day forecast",
     sunriseAndSunsetLabel: "Sunrise and sunset",
     airQualityLabel: "Air quality",
+    sunrise: "Sunrise",
+    sunset: "Sunset",
     seeMore: "See more",
+    hour: "Hour",
     today: "Today",
     now: "Now",
     month: [
@@ -186,6 +197,7 @@ class AppTranslation {
     close: "Close",
     ex: "ex.",
     saved: "Saved",
+    loadingError: "An error occurred while loading the data",
   );
 
   AppTranslation({this.language = SupportedLanguage.en});

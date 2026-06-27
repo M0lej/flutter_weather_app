@@ -8,6 +8,7 @@ import 'package:weather_app/hive/temperature_unit_adapter.dart';
 import 'package:weather_app/hive/wind_speed_unit_adapter.dart';
 import 'package:weather_app/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:weather_app/pages/hour_forecast_page.dart';
 import 'package:weather_app/pages/location_pick_page.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/themes/app_theme.dart';
@@ -49,24 +50,11 @@ class _MainAppState extends State<MainApp> {
 
   @override
   void initState() {
-    super.initState();
     loadData();
+    super.initState();
   }
 
   Future<void> loadData() async {
-    print("Loading...");
-    // showDialog(
-    //   context: context,
-    //   barrierDismissible: false,
-    //   builder: (BuildContext context) {
-    //     return Dialog(
-    //       child: Row(
-    //         mainAxisSize: MainAxisSize.min,
-    //         children: [CircularProgressIndicator(), Text("Loading")],
-    //       ),
-    //     );
-    //   },
-    // );
     GeoResult? storedPlaceData = await box.get("geo_data");
     AppSettings? storedAppSettings = await box.get('app_settings');
     WeatherResponse? fetchedWeatherData;
@@ -80,44 +68,33 @@ class _MainAppState extends State<MainApp> {
 
     if (storedPlaceData != null) {
       // get weather data if place data is not null
-      try {
-        print("Loading weather data...");
-        WeatherApi api = WeatherApi();
-        var response = await api.getWeather(
-          storedPlaceData.latitude,
-          storedPlaceData.longitude,
-          storedAppSettings.temperatureUnit,
-          storedAppSettings.windSpeedUnit,
-        );
+      WeatherApi weatherApi = WeatherApi();
+      var weatherResponse = await weatherApi
+          .getWeather(
+            storedPlaceData.latitude,
+            storedPlaceData.longitude,
+            storedAppSettings.temperatureUnit,
+            storedAppSettings.windSpeedUnit,
+          )
+          .catchError((e) => throw Exception('Weather api error: $e'));
 
-        if (response != null) {
-          fetchedWeatherData = response;
-        } else {
-          throw Exception("Failed to fetch weather data.");
-        }
-      } catch (e) {
-        print('Weather api error: $e');
+      if (weatherResponse != null) {
+        fetchedWeatherData = weatherResponse;
+      } else {
+        throw Exception("Failed to fetch weather data.");
       }
-      print("Finished loading weather data...");
 
       // get air quality data if place data is not null
-      print("Loading air quality data...");
-      try {
-        AirQualityApi api = AirQualityApi();
-        var response = await api.getAirQuality(
-          storedPlaceData.latitude,
-          storedPlaceData.longitude,
-        );
+      AirQualityApi airQualityApi = AirQualityApi();
+      var airQualityResponse = await airQualityApi
+          .getAirQuality(storedPlaceData.latitude, storedPlaceData.longitude)
+          .catchError((e) => throw Exception('Air quality api error: $e'));
 
-        if (response != null) {
-          fetchedAirQualityData = response;
-        } else {
-          throw Exception("Failed to fetch air quality data.");
-        }
-      } catch (e) {
-        print('Air quality api error: $e');
+      if (airQualityResponse != null) {
+        fetchedAirQualityData = airQualityResponse;
+      } else {
+        throw Exception("Failed to fetch air quality data.");
       }
-      print("Finished loading air quality data...");
     }
 
     setState(() {
@@ -134,11 +111,9 @@ class _MainAppState extends State<MainApp> {
       airQualityData = fetchedAirQualityData;
       loading = false;
     });
-    print("Finished loading");
   }
 
   Future<void> changeSettings(AppSettings updatedAppSettings) async {
-    print("changing settings");
     await box.put('app_settings', updatedAppSettings);
     setState(() {
       appSettings = updatedAppSettings;
@@ -155,49 +130,42 @@ class _MainAppState extends State<MainApp> {
   Future<void> getWeatherData() async {
     if (placeData == null) return;
 
-    try {
-      WeatherApi api = WeatherApi();
-      var response = await api.getWeather(
-        placeData!.latitude,
-        placeData!.longitude,
-        appSettings?.temperatureUnit ?? TemperatureUnit.celsius,
-        appSettings?.windSpeedUnit ?? WindSpeedUnit.kmh,
-      );
+    WeatherApi api = WeatherApi();
+    var response = await api
+        .getWeather(
+          placeData!.latitude,
+          placeData!.longitude,
+          appSettings?.temperatureUnit ?? TemperatureUnit.celsius,
+          appSettings?.windSpeedUnit ?? WindSpeedUnit.kmh,
+        )
+        .catchError((e) => throw Exception('Weather api error: $e'));
 
-      if (response != null) {
-        setState(() {
-          weatherData = response;
-          themeMode = isNight(DateTime.now(), response.daily)
-              ? ThemeMode.dark
-              : ThemeMode.light;
-        });
-      } else {
-        throw Exception("Failed to fetch weather data.");
-      }
-    } catch (e) {
-      print('Weather api error: $e');
+    if (response != null) {
+      setState(() {
+        weatherData = response;
+        themeMode = isNight(DateTime.now(), response.daily)
+            ? ThemeMode.dark
+            : ThemeMode.light;
+      });
+    } else {
+      throw Exception("Failed to fetch weather data.");
     }
   }
 
   Future<void> getAirQualityData() async {
     if (placeData == null) return;
 
-    try {
-      AirQualityApi api = AirQualityApi();
-      var response = await api.getAirQuality(
-        placeData!.latitude,
-        placeData!.longitude,
-      );
+    AirQualityApi api = AirQualityApi();
+    var response = await api
+        .getAirQuality(placeData!.latitude, placeData!.longitude)
+        .catchError((e) => throw Exception('Air quality api error: $e'));
 
-      if (response != null) {
-        setState(() {
-          airQualityData = response;
-        });
-      } else {
-        throw Exception("Failed to fetch air quality data.");
-      }
-    } catch (e) {
-      print('Air quality api error: $e');
+    if (response != null) {
+      setState(() {
+        airQualityData = response;
+      });
+    } else {
+      throw Exception("Failed to fetch air quality data.");
     }
   }
 
@@ -220,7 +188,7 @@ class _MainAppState extends State<MainApp> {
       changeSettings: changeSettings,
       changeTranslation: changeTranslation,
       child: MaterialApp(
-        themeMode: themeMode,
+        themeMode: ThemeMode.light,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         debugShowCheckedModeBanner: false,

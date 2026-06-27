@@ -7,12 +7,14 @@ class CustomCardTopPanel extends StatelessWidget {
   String topPanelText;
   bool showSeeMoreButton;
   Widget? panelRightWidget;
+  VoidCallback? onSeeMoreButtonTap;
 
   CustomCardTopPanel({
     super.key,
     required this.topPanelText,
     required this.showSeeMoreButton,
     this.panelRightWidget,
+    this.onSeeMoreButtonTap
   });
 
   @override
@@ -20,6 +22,8 @@ class CustomCardTopPanel extends StatelessWidget {
     Translation translation = GlobalResource.of(
       context,
     ).appTranslation.translations;
+
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,6 +31,7 @@ class CustomCardTopPanel extends StatelessWidget {
         Text(topPanelText, style: Theme.of(context).textTheme.bodyLarge),
         showSeeMoreButton
             ? GestureDetector(
+                onTap: onSeeMoreButtonTap,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

@@ -13,6 +13,7 @@ class AppTheme {
       actionsPadding: EdgeInsets.only(right: 10),
       backgroundColor: Color.fromARGB(0, 0, 0, 0),
       iconTheme: IconThemeData(color: Colors.white),
+      scrolledUnderElevation: 0,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

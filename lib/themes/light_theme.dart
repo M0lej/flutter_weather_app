@@ -9,9 +9,9 @@ ThemeData lightTheme = AppTheme.base.copyWith(
   brightness: Brightness.light,
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
   textSelectionTheme: TextSelectionThemeData(
-    selectionColor: Colors.blueAccent[100],
-    cursorColor: Colors.blueAccent[100],
-    selectionHandleColor: Colors.blueAccent[100],
+    selectionColor: Colors.blue[100]!.withAlpha(200),
+    cursorColor: Colors.blue[100],
+    selectionHandleColor: Colors.blue[100],
   ),
   scaffoldBackgroundColor: Colors.grey[100],
   cardTheme: CardThemeData(

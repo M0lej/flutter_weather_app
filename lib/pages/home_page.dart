@@ -5,6 +5,7 @@ import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/hive/app_settings_adapter.dart';
 import 'package:weather_app/icons/weather_icon.dart';
 import 'package:weather_app/icons/weather_icons_SVG.dart';
+import 'package:weather_app/pages/hour_forecast_page.dart';
 import 'package:weather_app/pages/settings_page.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/utils/air_quality.dart';
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
   });
 
   void onImageFinishedLoading() {
-    print("finished Loading");
+    print("image finished Loading");
   }
 
   @override
@@ -41,6 +42,19 @@ class HomePage extends StatelessWidget {
     Translation translation = globalResource.appTranslation.translations;
 
     double screenWidth = MediaQuery.of(context).size.width;
+
+    void onSeeMoreButtonTap() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HourForecastPage(
+            hourlyForecast: weatherData?.hourly,
+            hourlyUnits: weatherData?.hourlyUnits,
+            dailyForecast: weatherData?.daily,
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -83,6 +97,7 @@ class HomePage extends StatelessWidget {
                   CustomCard(
                     topPanelText: translation.hourForecastLabel,
                     showSeeMoreButton: true,
+                    onSeeMoreButtonTap: onSeeMoreButtonTap,
                     child: HourForecast(
                       hourlyData: weatherData?.hourly,
                       dailyData: weatherData?.daily,
@@ -91,6 +106,7 @@ class HomePage extends StatelessWidget {
                   CustomCard(
                     topPanelText: translation.sevenDayForecastLabel,
                     showSeeMoreButton: true,
+                    onSeeMoreButtonTap: onSeeMoreButtonTap,
                     child: WeekForecast(dailyForecast: weatherData?.daily),
                   ),
 

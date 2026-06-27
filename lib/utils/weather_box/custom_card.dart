@@ -6,6 +6,7 @@ class CustomCard extends StatelessWidget {
   final bool showSeeMoreButton;
   Widget child;
   Widget? panelRightWidget;
+  VoidCallback? onSeeMoreButtonTap;
 
   CustomCard({
     super.key,
@@ -13,6 +14,7 @@ class CustomCard extends StatelessWidget {
     required this.showSeeMoreButton,
     required this.child,
     this.panelRightWidget,
+    this.onSeeMoreButtonTap,
   });
 
   @override
@@ -33,6 +35,7 @@ class CustomCard extends StatelessWidget {
                     topPanelText: topPanelText,
                     showSeeMoreButton: showSeeMoreButton,
                     panelRightWidget: panelRightWidget,
+                    onSeeMoreButtonTap: onSeeMoreButtonTap,
                   )
                 : SizedBox.shrink(),
             // box content

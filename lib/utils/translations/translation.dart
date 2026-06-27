@@ -9,6 +9,8 @@ class Translation {
   final String enterYourLocation;
   final String enterYourLocationDescription;
 
+  final String temperature;
+  final String rain;
   final String feelsLike;
   final String wind;
   final String humidity;
@@ -19,8 +21,12 @@ class Translation {
   final String sunriseAndSunsetLabel;
   final String airQualityLabel;
 
+  final String sunset;
+  final String sunrise;
+
   final String seeMore;
 
+  final String hour;
   final String today;
   final String now;
 
@@ -36,13 +42,18 @@ class Translation {
   final String search;
 
   final String ex;
-  
-  final String saved; 
+
+  final String saved;
+
+  final String loadingError;
 
   const Translation({
     required this.selectLocation,
     required this.enterYourLocation,
     required this.enterYourLocationDescription,
+    required this.temperature,
+    required this.rain,
+    required this.hour,
     required this.feelsLike,
     required this.wind,
     required this.humidity,
@@ -51,6 +62,8 @@ class Translation {
     required this.sevenDayForecastLabel,
     required this.sunriseAndSunsetLabel,
     required this.airQualityLabel,
+    required this.sunrise,
+    required this.sunset,
     required this.seeMore,
     required this.today,
     required this.now,
@@ -63,6 +76,7 @@ class Translation {
     required this.close,
     required this.search,
     required this.ex,
-    required this.saved
+    required this.saved,
+    required this.loadingError,
   });
 }
