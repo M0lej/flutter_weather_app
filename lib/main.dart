@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/api/air_quality_api.dart';
 import 'package:weather_app/api/geo_api.dart';
@@ -11,6 +12,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_app/pages/location_pick_page.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/themes/app_theme.dart';
+import 'package:weather_app/utils/browser_phone_frame.dart';
 import 'package:weather_app/utils/loading_screen.dart';
 import 'package:weather_app/utils/translations/app_translation.dart';
 
@@ -181,6 +183,17 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    final Widget appContent = loading
+        ? LoadingScreen()
+        : placeData != null
+        ? HomePage(
+            placeData: placeData,
+            changeLocation: changeLocation,
+            weatherData: weatherData,
+            airQualityData: airQualityData,
+          )
+        : LocationPickPage(changeLocation: changeLocation);
+
     return GlobalResource(
       appSettings: appSettings ?? AppSettings(),
       appTranslation: appTranslation ?? AppTranslation(),
@@ -191,16 +204,11 @@ class _MainAppState extends State<MainApp> {
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         debugShowCheckedModeBanner: false,
-        home: loading
-            ? LoadingScreen()
-            : placeData != null
-            ? HomePage(
-                placeData: placeData,
-                changeLocation: changeLocation,
-                weatherData: weatherData,
-                airQualityData: airQualityData,
-              )
-            : LocationPickPage(changeLocation: changeLocation),
+        builder: (context, child) {
+          final navigator = child ?? const SizedBox.shrink();
+          return kIsWeb ? BrowserPhoneFrame(child: navigator) : navigator;
+        },
+        home: appContent,
       ),
     );
   }
