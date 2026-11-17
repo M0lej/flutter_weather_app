@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/icons/weather_icon.dart';
-import 'package:weather_app/icons/weather_icons_SVG.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/themes/extenstions/gradient_theme.dart';
 import 'package:weather_app/utils/translations/translation.dart';

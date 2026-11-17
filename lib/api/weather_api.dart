@@ -7,8 +7,6 @@ import 'package:weather_app/icons/weather_icons_SVG.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'dart:convert';
 
-import 'package:weather_app/utils/translations/translation.dart';
-
 class WeatherApi {
   Future<WeatherResponse?> getWeather(
     double latitude,

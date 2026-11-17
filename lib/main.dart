@@ -8,7 +8,6 @@ import 'package:weather_app/hive/temperature_unit_adapter.dart';
 import 'package:weather_app/hive/wind_speed_unit_adapter.dart';
 import 'package:weather_app/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:weather_app/pages/hour_forecast_page.dart';
 import 'package:weather_app/pages/location_pick_page.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/themes/app_theme.dart';

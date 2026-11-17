@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:weather_app/api/air_quality_api.dart';
 import 'package:weather_app/resources/global_resource.dart';
-import 'package:weather_app/utils/custom_text.dart';
-import 'package:weather_app/utils/translations/translation.dart';
 
 class AirQuality extends StatelessWidget {
   final Current? currentAirQuality;

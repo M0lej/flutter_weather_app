@@ -4,7 +4,6 @@ import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/icons/weather_icon.dart';
 import 'package:weather_app/icons/weather_icons_SVG.dart';
 import 'package:weather_app/themes/extenstions/day_cycle_slider_colors.dart';
-import 'package:weather_app/utils/custom_text.dart';
 
 class SunriseAndSunsetTime extends StatelessWidget {
   final Daily? dailyWeather;

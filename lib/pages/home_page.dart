@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/api/air_quality_api.dart';
 import 'package:weather_app/api/geo_api.dart';
 import 'package:weather_app/api/weather_api.dart';
-import 'package:weather_app/hive/app_settings_adapter.dart';
 import 'package:weather_app/icons/weather_icon.dart';
 import 'package:weather_app/icons/weather_icons_SVG.dart';
 import 'package:weather_app/pages/hour_forecast_page.dart';

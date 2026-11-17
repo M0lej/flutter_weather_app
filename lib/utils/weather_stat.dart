@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/api/weather_api.dart';
-import 'package:weather_app/hive/temperature_unit_adapter.dart';
 import 'package:weather_app/utils/custom_text.dart';
 
 class WeatherStat extends StatelessWidget {

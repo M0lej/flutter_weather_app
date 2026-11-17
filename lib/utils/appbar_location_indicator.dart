@@ -3,14 +3,13 @@ import 'package:weather_app/api/geo_api.dart';
 import 'package:weather_app/pages/location_pick_page.dart';
 import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/utils/custom_text.dart';
-import 'package:weather_app/utils/translations/app_translation.dart';
 import 'package:weather_app/utils/translations/translation.dart';
 
 class AppBarLocationIndicator extends StatelessWidget {
   final GeoResult? placeData;
   final Function changeLocation;
 
-  AppBarLocationIndicator({
+  const AppBarLocationIndicator({
     super.key,
     required this.placeData,
     required this.changeLocation,
@@ -33,7 +32,7 @@ class AppBarLocationIndicator extends StatelessWidget {
         barrierLabel: "Barrier",
         barrierDismissible: true,
         transitionDuration: Duration(milliseconds: 500),
-        pageBuilder: (_, __, ___) {
+        pageBuilder: (_, _, _) {
           return LocationPickPage(
             changeLocation: closePopupAndChangeLocation,
             closeButton: true,

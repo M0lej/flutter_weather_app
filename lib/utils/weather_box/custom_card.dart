@@ -4,11 +4,11 @@ import 'package:weather_app/utils/weather_box/custom_card_top_panel.dart';
 class CustomCard extends StatelessWidget {
   final String topPanelText;
   final bool showSeeMoreButton;
-  Widget child;
-  Widget? panelRightWidget;
-  VoidCallback? onSeeMoreButtonTap;
+  final Widget child;
+  final Widget? panelRightWidget;
+  final VoidCallback? onSeeMoreButtonTap;
 
-  CustomCard({
+  const CustomCard({
     super.key,
     required this.topPanelText,
     required this.showSeeMoreButton,

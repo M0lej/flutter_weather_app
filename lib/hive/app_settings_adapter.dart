@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:weather_app/hive/temperature_unit_adapter.dart';
 import 'package:weather_app/hive/wind_speed_unit_adapter.dart';
-import 'package:weather_app/utils/translations/app_translation.dart';
 import 'package:weather_app/utils/translations/translation.dart';
 
 class AppSettings {

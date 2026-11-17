@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/themes/extenstions/image_background_theme.dart';
 
 class CustomBackground extends StatelessWidget {
-  Widget child;
-  VoidCallback onImageFinishedLoading;
-  CustomBackground({
+  final Widget child;
+  final VoidCallback onImageFinishedLoading;
+  
+  const CustomBackground({
     super.key,
     required this.child,
     required this.onImageFinishedLoading,

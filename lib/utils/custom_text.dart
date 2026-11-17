@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
-  String text;
-  Color? color;
-  double? fontSize;
-  FontWeight? fontWeight;
-  TextStyle? textStyle;
+  final String text;
+  final Color? color;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+  final TextStyle? textStyle;
 
-  CustomText({
+  const CustomText({
     super.key,
     required this.text,
     this.color = Colors.white,

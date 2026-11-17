@@ -18,7 +18,6 @@ class HourForecast extends StatelessWidget {
     final now = DateTime.now();
     final children = <Widget>[];
 
-    var screenWidth = MediaQuery.of(context).size.width;
     double childrenCount = clampDouble(
       20,
       0,

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,8 +10,9 @@ import 'package:weather_app/utils/translations/translation.dart';
 
 class LocationPickPage extends StatefulWidget {
   final Function changeLocation;
-  bool closeButton;
-  LocationPickPage({
+  final bool closeButton;
+
+  const LocationPickPage({
     super.key,
     required this.changeLocation,
     this.closeButton = false,

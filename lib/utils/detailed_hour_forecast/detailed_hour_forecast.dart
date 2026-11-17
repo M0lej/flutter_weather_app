@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/extensions/two_digit_string.dart';
-import 'package:weather_app/hive/wind_speed_unit_adapter.dart';
 import 'package:weather_app/icons/weather_icon.dart';
-import 'package:weather_app/icons/weather_icons_SVG.dart';
-import 'package:weather_app/pages/settings_page.dart';
-import 'package:weather_app/resources/global_resource.dart';
 import 'package:weather_app/utils/detailed_hour_forecast/detailed_hour_forecast_top_panel.dart';
-import 'package:weather_app/utils/translations/translation.dart';
 import 'dart:math';
 
 class DetailedHourForecast extends StatelessWidget {

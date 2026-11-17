@@ -30,8 +30,7 @@ class _HourForecastPageState extends State<HourForecastPage> {
     Translation translation = GlobalResource.of(
       context,
     ).appTranslation.translations;
-    SupportedLanguage lang = GlobalResource.of(context).appSettings.language;
-
+    
     void daySelectorChangeHandler(String date) {
       setState(() {
         selectedDate = date;
